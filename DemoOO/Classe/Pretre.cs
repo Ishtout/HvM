@@ -37,7 +37,6 @@ namespace DemoOO.Classe
         }
         public void Stats()
         {
-
             Random rnd = new Random();
             _force = rnd.Next(10, 20);
             _endurance = rnd.Next(10, 20);

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HvM.Classe;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,43 +7,21 @@ using System.Threading.Tasks;
 
 namespace DemoOO.Classe
 {
-    public class Pretre
+    public class Pretre : Personnage
     {
-        public string Nom { get; set; }
-
-        private int _force;
-        public int Force
+        
+        public override int Intelligence
         {
-            get { return _force; }
-            set { _force = value; }
-        }
-        private int _endurance;
-        public int Endurance
-        {
-            get { return _endurance; }
-            set { _endurance = value; }
-        }
-        private int _intelligence;
-        public int Intelligence
-        {
-            get { return _intelligence + 2; }
-            set { _intelligence = value; }
+            get { return base.Intelligence + 2; }
+            set { base.Intelligence = value; }
         }
 
-        private int _sagesse;
-        public int Sagesse
+        public override int Sagesse
         {
-            get { return _sagesse + 4; }
-            set { _sagesse = value; }
+            get { return base.Sagesse + 4; }
+            set { base.Sagesse = value; }
         }
-        public void Stats()
-        {
-            Random rnd = new Random();
-            _force = rnd.Next(10, 20);
-            _endurance = rnd.Next(10, 20);
-            _sagesse = rnd.Next(10, 20);
-            _intelligence = rnd.Next(10, 20);
-        }
+        
 
 
 

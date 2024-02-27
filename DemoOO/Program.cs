@@ -1,25 +1,43 @@
 ﻿
 using DemoOO.Classe;
+using HvM;
+using HvM.Classe;
+using HvM.Classe.Monstre;
 
 
-Guerrier G = new Guerrier();
-Pretre P = new Pretre();
-Mage M = new Mage();
- 
+Personnage joueur;
+Jeu jeux = new Jeu();
+int choix = 0;
+while (choix < 1 || choix > 3)
+{
+    Console.WriteLine("Quelle classe voulez vous ?");
+    Console.WriteLine("1.Guerrier");
+    Console.WriteLine("2.Mage");
+    Console.WriteLine("3.Pretre");
 
-G.Nom = "Bridil";
-G.Stats();
-G.ShowCharacterProfile();
-//Console.WriteLine(G.Nom + " " + G.Force + " " + G.Endurance + " " + G.Sagesse + " " + G.Intelligence); 
+    choix = int.Parse(Console.ReadLine());
+}
+switch (choix)
+{
+    case 1:
+        joueur = new Guerrier();
+        break;
+    case 2:
+        joueur = new Mage();
+        break;
+    case 3:
+        joueur = new Pretre();
+        break;
+    default:
+        joueur = null;
+        break;
+}
+if (joueur != null)
+{
+    joueur.Stats();
+    joueur.ShowCharacterProfile();
+}
 
 
-P.Nom = "Rudolph";
-P.Stats();
-P.ShowCharacterProfile();
-//Console.WriteLine(P.Nom + " " + P.Force + " " + P.Endurance + " " + P.Sagesse + " " + P.Intelligence);
 
-
-M.Nom = "Jaina";
-M.Stats();
-M.ShowCharacterProfile();
-//Console.WriteLine(M.Nom + " " + M.Force + " " + M.Endurance + " " + M.Sagesse + " " + M.Intelligence);
+jeux.jeu();

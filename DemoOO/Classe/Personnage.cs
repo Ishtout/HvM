@@ -38,6 +38,9 @@ namespace HvM.Classe
         }
         public void Stats()
         {
+            Console.Write($"Choisissez votre nom pour votre {this.GetType().Name} : ");
+            Nom = Console.ReadLine();
+
             Random rnd = new Random();
             Force = rnd.Next(10, 21);
             Endurance = rnd.Next(10, 21);

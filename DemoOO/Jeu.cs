@@ -46,7 +46,7 @@ namespace HvM
 
 		foreach (Monstre monstre in Monstres)
 		{
-			monstre.ShowMonsterProfile();
+			monstre.ShowCharacterProfile();
 				switch (monstre)
 				{
 					case Goblin G:

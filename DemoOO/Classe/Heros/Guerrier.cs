@@ -1,11 +1,10 @@
-﻿using HvM.Classe;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DemoOO.Classe
+namespace HvM.Classe.Heros
 {
     public class Guerrier : Personnage
     {
@@ -20,7 +19,7 @@ namespace DemoOO.Classe
             get { return base.Endurance + 3; }
             set { base.Endurance = value; }
         }
-        
+
 
 
 

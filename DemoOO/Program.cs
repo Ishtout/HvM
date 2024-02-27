@@ -1,7 +1,7 @@
 ﻿
 using DemoOO.Classe;
 using HvM;
-using HvM.Classe;
+using HvM.Classe.Heros;
 using HvM.Classe.Monstre;
 
 

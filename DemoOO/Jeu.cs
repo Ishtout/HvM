@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DemoOO.Classe;
 using HvM.Classe;
 
 
@@ -12,10 +11,11 @@ namespace HvM
 {
     public class Jeu
     {
-		public void jeu()
+        List<Monstre> Monstres {  get; set; }
+        public void jeu()
 		{
 		
-        List<Monstre> monstres = new List<Monstre>();
+        Monstres = new List<Monstre>();
         Random rnd = new Random();
 
 		for (int i = 0; i< 10; i++)
@@ -28,23 +28,23 @@ namespace HvM
 				case 3 :
 						m = new Goblin();
 						m.Stats();
-					monstres.Add(m);
+					Monstres.Add(m);
 					break;
 				case 4 :
 				case 5 :
 						m = new Loup();
 						m.Stats();
-					monstres.Add(m);
+					Monstres.Add(m);
 					break;
 				case 6 :
 						m = new Orc();
 						m.Stats();
-					monstres.Add(m);
+					Monstres.Add(m);
 					break;
 			}
 		}
 
-		foreach (Monstre monstre in monstres)
+		foreach (Monstre monstre in Monstres)
 		{
 			monstre.ShowMonsterProfile();
 				switch (monstre)
@@ -63,7 +63,8 @@ namespace HvM
 				}
                 Console.WriteLine();
                 Console.WriteLine("--------------");
-        }
+                Console.WriteLine();
+            }
 
             
         }

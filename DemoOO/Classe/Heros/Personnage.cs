@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HvM.Classe
+namespace HvM.Classe.Heros
 {
     public class Personnage
     {
@@ -38,7 +38,7 @@ namespace HvM.Classe
         }
         public void Stats()
         {
-            Console.Write($"Choisissez votre nom pour votre {this.GetType().Name} : ");
+            Console.Write($"Choisissez votre nom pour votre {GetType().Name} : ");
             Nom = Console.ReadLine();
 
             Random rnd = new Random();
@@ -49,7 +49,7 @@ namespace HvM.Classe
         }
         public void ShowCharacterProfile()
         {
-            Console.WriteLine(this.GetType().Name);
+            Console.WriteLine(GetType().Name);
             Console.WriteLine($"Nom : {Nom}");
             Console.WriteLine($"Force : {Force} ({_force})");
             Console.WriteLine($"Endu : {Endurance} ({_endurance})");

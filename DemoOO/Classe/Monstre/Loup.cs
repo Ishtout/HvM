@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HvM.Equipement;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace HvM.Classe.Monstre
 {
-    public class Loup : Monstre
+    public class Loup : Monstre, ICuir
     {
 
         public override int Force
@@ -19,6 +20,9 @@ namespace HvM.Classe.Monstre
             get { return base.Endurance + 1; }
             set { base.Endurance = value; }
         }
+
+        public int cuir { get; set; }
+
         public void Morsure() 
         {
             Console.WriteLine("Le Loup Mord");

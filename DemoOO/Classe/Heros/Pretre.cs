@@ -8,7 +8,6 @@ namespace HvM.Classe.Heros
 {
     public class Pretre : Personnage
     {
-
         public override int Intelligence
         {
             get { return base.Intelligence + 2; }
@@ -20,12 +19,5 @@ namespace HvM.Classe.Heros
             get { return base.Sagesse + 4; }
             set { base.Sagesse = value; }
         }
-
-
-
-
-
-
-
     }
 }

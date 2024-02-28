@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HvM.Equipement;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,6 @@ namespace HvM.Classe.Heros
 {
     public class Guerrier : Personnage
     {
-
         public override int Force
         {
             get { return base.Force + 3; }
@@ -19,14 +19,5 @@ namespace HvM.Classe.Heros
             get { return base.Endurance + 3; }
             set { base.Endurance = value; }
         }
-
-
-
-
-
-
-
-
-
     }
 }

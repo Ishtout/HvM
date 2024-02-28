@@ -13,6 +13,7 @@ namespace HvM.Classe.Monstre
             Random rnd = new Random();
             Force = rnd.Next(10, 21);
             Endurance = rnd.Next(10, 21);
+            
         }
         public override void ShowCharacterProfile()
         {

@@ -19,10 +19,5 @@ namespace HvM.Classe.Heros
             get { return base.Sagesse + 2; }
             set { base.Sagesse = value; }
         }
-
-
-
-
-
     }
 }

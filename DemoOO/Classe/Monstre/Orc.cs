@@ -54,7 +54,7 @@ namespace HvM.Classe.Monstre
             Random rnd = new Random();
             base.Stats();
             Or = rnd.Next(0, 7);
-            GenererInventaire(Jeu.equipement());
+            GenererInventaire(Jeu.liste);
         }
         public void Loot()
         {

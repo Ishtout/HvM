@@ -13,13 +13,10 @@ namespace HvM.Equipement
         public int Prix { get; set; }
         public int NbDes { get; set; }
         public int Face { get; set; }
-
-
         public virtual void ShowItemProfile()
         {
             Console.WriteLine($"Nom : {Nom}");
             Console.WriteLine($"Prix : {Prix} Po");
         }
-
     }
 }

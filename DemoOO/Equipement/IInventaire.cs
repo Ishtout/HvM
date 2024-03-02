@@ -28,11 +28,5 @@ namespace HvM.Equipement
                     break;
             }
         }
-
-
-        
-        
-        
-
     }
 }

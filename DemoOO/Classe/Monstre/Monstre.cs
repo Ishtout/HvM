@@ -13,6 +13,7 @@ namespace HvM.Classe.Monstre
             Random rnd = new Random();
             Force = rnd.Next(10, 21);
             Endurance = rnd.Next(10, 21);
+            PointDeVie = 10;
             
         }
         public override void ShowCharacterProfile()
@@ -20,6 +21,7 @@ namespace HvM.Classe.Monstre
             Console.WriteLine(GetType().Name);
             Console.WriteLine($"Force : {Force} ({_force})");
             Console.WriteLine($"Endu : {Endurance} ({_endurance})");
+            Console.WriteLine($"Point de vie : {PointDeVie}");
         }
     }
 }

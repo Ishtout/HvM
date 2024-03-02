@@ -8,11 +8,10 @@ namespace HvM.Equipement
 {
     public class Armure : Equipements
     {
-        public int retour {  get; set; }
+        public int Retour {  get; set; }
         public int Reduction()
         {
-            return /* attaque ennemie */ -retour;
-
+            return Retour;
         }
     }
 }

@@ -14,11 +14,7 @@ namespace HvM.Classe.Monstre
             get { return base.Force - 1; }
             set { base.Force = value; }
         }
-        public override int Endurance
-        {
-            get { return base.Endurance; }
-            set { base.Endurance = value; }
-        }
+        
         public int Or { get ; set ;}
         public List<Equipements> InventaireList {get ; set; }
         public void CoupDeMasse() 
@@ -47,7 +43,7 @@ namespace HvM.Classe.Monstre
             Random rnd = new Random();
             base.Stats();
             Or = rnd.Next(0, 7);
-            GenererInventaire(Jeu.equipement());
+            GenererInventaire(Jeu.liste);
         }
         public void Loot()
         {

@@ -9,6 +9,5 @@ namespace HvM.Equipement
     public interface IOr
     {
         int Or { get; set; }
-
     }
 }

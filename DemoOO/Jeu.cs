@@ -65,60 +65,119 @@ namespace HvM
 			do
 			{
                 Console.WriteLine("Bienvenu au marchand Ambulant !");
-                Console.WriteLine("Que souhaitez vous acheter ?");
-				int cpt = 1;
-                foreach (var item in liste)
-				{
-					Console.WriteLine($"{cpt} . Nom : {item.Nom} ");
-					Console.WriteLine($" Prix : {item.Prix} Or");
-					cpt++;
-				}
-                Console.WriteLine($"{cpt} . Quitter .");
-				int choix = int.Parse(Console.ReadLine());
-				switch (choix)
-				{
-					case 1:
-                        Console.WriteLine($"Voici votre {liste[choix - 1].Nom}");
-						personnage.InventaireList.Add(liste[choix-1]);
-						personnage.Or -= liste[choix - 1].Prix;
+                Console.WriteLine($"Vous avez {personnage.Or} Or disponible");
+                Console.WriteLine($"Vous avez {personnage.PointDeVie} Point de vie");
+                Console.WriteLine("Que souhaitez vous faire ?");
+                Console.WriteLine("1: Acheter");
+                Console.WriteLine("2: Vendre");
+                
+                foreach (var item in personnage.InventaireList)
+                {
+                    if (item is Consommable)
+                    {
+                        Console.WriteLine("3: Utiliser une potion");
+                    }
+                }
+                Console.WriteLine("4: Quitter");
+
+                int choix = int.Parse(Console.ReadLine());
+                switch (choix)
+                {
+                    case 1:
+                        do
+                        {
+                            Console.WriteLine("Que souhaitez vous acheter ?");
+                        int cpt = 1;
+                        foreach (var item in liste)
+                        {
+                            Console.WriteLine($"{cpt} . {item.Nom} ");
+                            Console.WriteLine($" Prix : {item.Prix} Or");
+                            cpt++;
+                        }
+                        Console.WriteLine($"{cpt} . Quitter .");
+                        choix = int.Parse(Console.ReadLine());
+                        switch (choix)
+                        {
+                            case 1:
+                            case 2:
+                            case 3:
+                            case 4:
+                            case 5:
+                            case 6:
+                                Console.WriteLine($"Voici votre {liste[choix - 1].Nom}");
+                                if (personnage.Or < liste[choix - 1].Prix)
+                                {
+                                    Console.WriteLine("Tu peux pas acheter.");
+                                }
+                                else
+                                {
+                                    personnage.InventaireList.Add(liste[choix - 1]);
+                                    personnage.Or -= liste[choix - 1].Prix;
+                                }
+                                break;
+                            case 7:
+                                fin = true;
+                                break;
+                            default:
+                                Console.WriteLine("Apprend a écrire.");
+                                break;
+                        }
+                        Console.WriteLine($"Il vous reste {personnage.Or} or ");
+                        } while (!fin && personnage.Or > 0);
                         break;
                     case 2:
-                        Console.WriteLine($"Voici votre {liste[choix - 1].Nom}");
-                        personnage.InventaireList.Add(liste[choix - 1]);
-                        personnage.Or -= liste[choix - 1].Prix;
+                        do
+                        {
+                            Console.WriteLine("Que souhaitez vous Vendre ?");
+                         int cpt = 1;
+                        foreach (var item in personnage.InventaireList)
+                        {
+                            Console.WriteLine($"{cpt} : {item.Nom} ");
+                            Console.WriteLine($" Prix : {item.Prix} Or");
+                            cpt++;
+                        }
+                            Console.WriteLine($"{cpt} : Quitter");
+                            choix = int.Parse(Console.ReadLine());
+                            if (choix < cpt && choix >=0)
+                            {
+                                Console.WriteLine($"Merci pour la vente de {personnage.InventaireList[choix - 1].Nom}");
+                                Console.WriteLine($"Au prix de {personnage.InventaireList[choix - 1].Prix / 2} Or");
+                                personnage.Or += (personnage.InventaireList[choix - 1].Prix / 2);
+                                personnage.InventaireList.Remove(personnage.InventaireList[choix - 1]);
+                            }
+                            else
+                            {
+                                fin = true;
+                            }
+                } while (!fin) ;
                         break;
                     case 3:
-                        Console.WriteLine($"Voici votre {liste[choix - 1].Nom}");
-                        personnage.InventaireList.Add(liste[choix - 1]);
-                        personnage.Or -= liste[choix - 1].Prix;
+                        List<Consommable> PotionPerso = new List<Consommable>();
+                        foreach (var item in personnage.InventaireList)
+                        {
+                            if (item is Consommable c)
+                            {
+                                PotionPerso.Add(c);
+                            }
+                        }
+                        personnage.PointDeVie += PotionPerso[0].Soin();
+                        if ((personnage.PointDeVie + PotionPerso[0].Soin()) > personnage.Pointdeviemax)
+                        {
+                            personnage.PointDeVie = personnage.Pointdeviemax;
+                            personnage.InventaireList.Remove(PotionPerso[0]);
+                        }
+                        else
+                        {
+                            personnage.PointDeVie += PotionPerso[0].Soin();
+                            personnage.InventaireList.Remove(PotionPerso[0]);
+                        }
                         break;
                     case 4:
-                        Console.WriteLine($"Voici votre {liste[choix - 1].Nom}");
-                        personnage.InventaireList.Add(liste[choix - 1]);
-                        personnage.Or -= liste[choix - 1].Prix;
-                        break;
-                    case 5:
-                        Console.WriteLine($"Voici votre {liste[choix - 1].Nom}");
-                        personnage.InventaireList.Add(liste[choix - 1]);
-                        personnage.Or -= liste[choix - 1].Prix;
-                        break;
-                    case 6:
-                        Console.WriteLine($"Voici votre {liste[choix - 1].Nom}");
-                        personnage.InventaireList.Add(liste[choix - 1]);
-                        personnage.Or -= liste[choix - 1].Prix;
-                        break;
-                    case 7:
                         fin = true;
                         break;
-                    default:
-                        Console.WriteLine("Apprend a écrire.");
-                        break;
-				}
-                Console.WriteLine($"Il vous reste {personnage.Or} or ");
+                }
             } while (!fin && personnage.Or > 0);
-            Console.WriteLine("Fin des achats.");
-            personnage.ShowCharacterProfile();
-            personnage.AfficherInventaire();
+            Console.WriteLine("Fin des achats/vente.");
         }
         public void GenérerMonstre()
 		{
@@ -136,7 +195,7 @@ namespace HvM
 				    case 3 :
 						    m = new Goblin();
 						    m.Stats();
-					    Monstres.Add(m);
+                        Monstres.Add(m);
 					    break;
 				    case 4 :
 				    case 5 :
@@ -152,33 +211,40 @@ namespace HvM
 			    }
 		    }
 
-		    //foreach (Monstre monstre in Monstres)
-		    //{
-			   // monstre.ShowCharacterProfile();
-				
-      //              switch (monstre)
-				  //  {
-					 //   case Goblin G:
-						//    G.CoupDeMasse();
-						//    G.Loot();
-						//    break;
-					 //   case Loup L:
-						//    L.Morsure();
-						//    L.Hurlement();
-						//    break;
-					 //   case Orc O:
-						//    O.CoupDeHache();
-						//    O.CriDeGuerre();
-						//    O.Loot();
-						//    break;
-				  //  }
-      //              Console.WriteLine();
-      //              Console.WriteLine("--------------");
-      //              Console.WriteLine();
-      //      }
+            //foreach (Monstre monstre in Monstres)
+            //{
+
+            //    switch (monstre)
+            //    {
+            //        case Goblin G:
+            //            G.GenererInventaire(liste);
+            //            break;
+            //        case Orc O:
+            //            O.GenererInventaire(liste);
+            //            break;
+            //    }
+            //}
         }
 
-		
+
+        public void RecupLoot(Personnage personnage,Monstre monstre)
+        {
+            if (monstre is Goblin G)
+            {
+                foreach (var item in G.InventaireList)
+                {
+                    personnage.InventaireList.Add(item);
+                }
+            }
+            else if (monstre is Orc O)
+            {
+                foreach (var item in O.InventaireList)
+                {
+                    personnage.InventaireList.Add(item);
+                }
+            }
+            
+        }
         public void CreeJoueur() 
 		{
             Personnage joueur;
@@ -232,15 +298,17 @@ namespace HvM
                     ArmurePerso.Add(b);
                 }
             }
-            Console.WriteLine("Quelle arme voulez vous utilisé ? :");
+            Console.WriteLine($"Quelle arme voulez vous utilisé contre {monstre.GetType().Name}? :");
             foreach (var item in ArmesPerso)
             {
                 Console.WriteLine($"{cpt++} . {item.Nom}");
             }
             int choixArme = int.Parse(Console.ReadLine());
             Console.WriteLine("Quelle armure voulez vous utilisé ? :");
+            cpt = 1;
             foreach (var item in ArmurePerso)
             {
+
                 Console.WriteLine($"{cpt++} . {item.Nom}");
             }
             int choixArmure = int.Parse(Console.ReadLine());
@@ -263,27 +331,42 @@ namespace HvM
                 monstre.ShowCharacterProfile();
                 monstre.PointDeVie -= attaquePerso;
                 Console.WriteLine($"Vous avec infligés {attaquePerso} à {monstre.GetType().Name}");
-                personnage.PointDeVie -= (attaqueMonstre - ArmurePerso[choixArmure-1].Reduction());
-                Console.WriteLine($" {monstre.GetType().Name} vous a infligés {attaqueMonstre} de dégats.");
+                if ((attaqueMonstre - ArmurePerso[choixArmure - 1].Reduction()) <= 0) 
+                {
+                    attaqueMonstre = 0;
+                    personnage.PointDeVie -= attaqueMonstre;
+                }
+                else
+                {
+                    personnage.PointDeVie -= (attaqueMonstre - ArmurePerso[choixArmure-1].Reduction());
+                }
+                if (monstre.PointDeVie > 0)
+                {
+                    Console.WriteLine($" {monstre.GetType().Name} vous a infligés {attaqueMonstre} de dégats.");
+                }
+                else
+                {
+                    Console.WriteLine("Combat terminer");
+                    RecupLoot(personnage, monstre);
+                }
             } while (personnage.PointDeVie > 0 && monstre.PointDeVie > 0 );
 
-
-
-
-
-
-            //3) Le monstre perds un nbr de PV = aux dégats infligé.
-            //4) au tour du monstre de frapper => Goblin : 1D4+ modificateur de force 
-            //=> Orc :1D8 + modificateur de force
-            //=> Loup : 1D6 + Modificateur de force
+        }
+        public void LancerCombats() 
+        {
+            
+            foreach (var item in Monstres)
+            {
+                Combats(Heros, item);
+                AffichageBoutique(Heros);
+            }
         }
         public void LancerJeu() 
         {
             GenérerMonstre();
             CreeJoueur();
             AffichageBoutique(Heros);
-            Combats(Heros,Monstres[0]);
-        
+            LancerCombats();
         }
     }
 }

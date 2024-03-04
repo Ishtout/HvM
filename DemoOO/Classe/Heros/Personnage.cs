@@ -36,9 +36,7 @@ namespace HvM.Classe.Heros
             Sagesse = rnd.Next(10, 21);
             Intelligence = rnd.Next(10, 21);
             Or = 100;
-            PointDeVie = 10;
-            
-
+            PointDeVie = Pointdeviemax = 10 + Modificateur(Endurance);
         }
         public override void ShowCharacterProfile()
         {
@@ -58,6 +56,7 @@ namespace HvM.Classe.Heros
                 Console.WriteLine($"{item.Nom}");
             }
         }
+        
 
         
     }

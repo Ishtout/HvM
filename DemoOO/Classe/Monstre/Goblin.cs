@@ -45,13 +45,6 @@ namespace HvM.Classe.Monstre
             Or = rnd.Next(0, 7);
             GenererInventaire(Jeu.liste);
         }
-        public void Loot()
-        {
-            foreach (var item in InventaireList)
-            {
-                Console.WriteLine(item.Nom);
-            }
-        }
         public override void ShowCharacterProfile()
         {
             base.ShowCharacterProfile();

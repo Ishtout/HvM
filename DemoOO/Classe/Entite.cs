@@ -12,9 +12,16 @@ namespace HvM.Classe
         protected int _force;
         protected int _endurance;
         protected int _pointDeVie;
+        protected int _pointdeviemax;
+
+        public virtual int Pointdeviemax 
+        {
+            get { return _pointdeviemax; }
+            set { _pointdeviemax = value; } 
+        }
         public virtual int PointDeVie
         {
-            get { return  _pointDeVie + Modificateur(Endurance) ; }
+            get { return  _pointDeVie ; }
             set { _pointDeVie = value;}
         }
         public virtual int Force

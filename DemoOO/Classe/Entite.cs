@@ -44,13 +44,14 @@ namespace HvM.Classe
                 return 1;
             else if (stat < 19)
                 return 2;
+            else if (stat < 22)
+                return 3;
             else
             {
-                return 3;
+                return 4;
             }
         }
         public abstract void Stats();
-
         public abstract void ShowCharacterProfile();
        
     }

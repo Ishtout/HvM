@@ -225,8 +225,6 @@ namespace HvM
             //    }
             //}
         }
-
-
         public void RecupLoot(Personnage personnage,Monstre monstre)
         {
             if (monstre is Goblin G)
@@ -368,5 +366,7 @@ namespace HvM
             AffichageBoutique(Heros);
             LancerCombats();
         }
+
+
     }
 }
